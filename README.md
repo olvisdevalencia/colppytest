@@ -16,7 +16,7 @@ Abrir ```.env``` e ingrese la configuración necesaria para la DB.
 $ php artisan migrate --seed
 
 ```
-Este comando , creara y popular registros necesarios en la base de datos, para ejecutar la aplicación.
+Este comando , creara y hara popular los registros necesarios en la base de datos, para ejecutar la aplicación.
 
 ## Work Flow
 
