@@ -1,7 +1,7 @@
 # Colppy test
 
 ## Demo
-[Click aqui para el live demo](http://laravel-admin.herokuapp.com)
+[Click aqui para el live demo](http://colppy.herokuapp.com)
 
 > admin@colppy.com / colppy
 
