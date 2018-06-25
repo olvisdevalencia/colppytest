@@ -9,13 +9,14 @@
 ```
 $ composer install && npm install
 ```
-Le pedira una opcion a seleccionar , digite el numero 1
-Abrir ```.env``` e ingrese la configuración necesaria para las configuraciones de DB y Oauth Providers.
+Le pedira una opcion a seleccionar , digite el numero 1, luego de esto
+Abrir ```.env``` e ingrese la configuración necesaria para la DB.
 
 ```
 $ php artisan migrate --seed
 
 ```
+Creaar y popular registros en la base de datos
 
 ## Work Flow
 
