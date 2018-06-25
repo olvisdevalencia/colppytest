@@ -1,0 +1,239 @@
+<section class="container-fluid">
+	<div class="row">
+
+			<div class="col-md-offset-1 col-md-10 resumen-list" ng-show="vm.invoicesList">
+
+        <div class="col-md-2">
+          <button type="button" class="btn btn-block btn-primary" ng-click="vm.OnCreateInvoice()">CREAR FACTURA</button>
+				</div>
+
+				<div class="col-md-12">
+
+          <div class="box-body table-latest">
+            <h3 class="text-center">FACTURAS</h3>
+            <table datatable="ng" width="100%" class="table table-hover table-bordered" dt-options="vm.dtOptions" dt-instance="vm.dtInstance" dt-column-defs="vm.dtColumnDefs">
+              <thead>
+                <tr>
+                  <th> # </th>
+                  <th> Fecha </th>
+                  <th> Empresa </th>
+                  <th> Cliente </th>
+                  <th> Subtotal </th>
+                  <th> IVA </th>
+                  <th> Total </th>
+									<th> Acciones </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="invoice in vm.invoiceList">
+                  <td>{{ invoice.id }}</td>
+                  <td>{{ invoice.created_at }}</td>
+                  <td>{{ invoice.empresa }}</td>
+                  <td>{{ invoice.cliente }}</td>
+                  <td>${{ invoice.Subtotal }}</td>
+                  <td>${{ invoice.IVA }}</td>
+                  <td>${{ invoice.total }}</td>
+									<td>
+										<a class="btn btn-xs btn-info" ui-sref="app.invoiceview({invoiceId: invoice.id})">
+		                    <i class="fa fa-eye"></i>
+		                </a>
+										&nbsp;
+										<a class="btn btn-xs btn-success" ui-sref="app.invoiceedit({invoiceId: invoice.id})">
+		                    <i class="fa fa-pencil"></i>
+		                </a>
+									</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+				</div>
+
+			</div>
+
+      <div class="col-md-offset-1 col-md-10 resumen-list" ng-show="vm.invoiceCreation">
+
+				<div class="col-md-12">
+          <div class="box-body">
+            <h3 class="text-center">CREACIÓN  DE FACTURA</h3>
+          </div>
+				</div>
+
+        <div class="col-md-6">
+
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">EMPRESA</h3>
+            </div>
+            <div class="box-body">
+              <form role="form">
+
+                <div class="form-group">
+                  <label>Seleccionar empresa</label>
+                  <select class="form-control"
+                      ng-model="vm.selectedEnterprise"
+                      ng-options="x.Nombre for x in vm.enterprises"
+                      ng-change="vm.OnSelectedEnterprise()" required>
+                      <option value="">seleccione</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <input type="text" class="form-control" value="{{ vm.selectedEnterprise.Nombre }}" disabled>
+                </div>
+
+                <div class="form-group">
+                  <label>Razon social</label>
+                  <input type="text" class="form-control" value="{{ vm.selectedEnterprise.RazonSocial }}" disabled>
+                </div>
+
+                <div class="form-group">
+                  <label>CUIT</label>
+                  <input type="text" class="form-control" value="{{ vm.selectedEnterprise.CUIT }}" disabled>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">CLIENTE</h3>
+            </div>
+            <div class="box-body">
+              <form role="form">
+
+                <div class="form-group">
+                  <label>Seleccionar cliente</label>
+                  <select class="form-control"
+                      ng-model="vm.selectedClient"
+                      ng-options="x.Nombre for x in vm.clients" required>
+                      <option value="">seleccione</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>Nombre</label>
+                  <input type="text" class="form-control" value="{{ vm.selectedClient.Nombre }}" disabled>
+                </div>
+
+                <div class="form-group">
+                  <label>CUIT</label>
+                  <input type="text" class="form-control" value="{{ vm.selectedClient.CUIT }}" disabled>
+                </div>
+
+                </br>
+                <div class="box-footer">
+                  <button type="button" class="btn btn-danger" ng-click="vm.onCancel()">Cancelar</button>
+                  <button type="button" class="btn btn-primary" ng-disabled="!vm.selectedClient || !vm.selectedEnterprise" ng-click="vm.onNext()">Continuar</button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+			</div>
+
+      <div class="col-md-offset-1 col-md-10 resumen-list" ng-show="vm.invoiceDetail">
+
+				<div class="col-md-12">
+          <div class="box-body">
+            <h3 class="text-center">DETALLE  DE FACTURA</h3>
+          </div>
+				</div>
+
+        <div class="col-md-6">
+
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">
+                EMPRESA: <strong>{{ vm.selectedEnterprise.Nombre }}</strong>
+                &nbsp;
+                CUIT: <strong>{{ vm.selectedEnterprise.CUIT }}</strong>
+              </h3>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">
+                CLIENTE: <strong>{{ vm.selectedClient.Nombre }}</strong>
+                &nbsp;
+                CUIT: <strong>{{ vm.selectedClient.CUIT }}</strong>
+              </h3>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-12">
+
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">Items</h3>
+            </div>
+
+            <div class="box-body">
+
+              <div class="row has-warning">
+                <div class="col-xs-4">
+                  <input type="text" class="form-control" ng-model="vm.newDetailName" placeholder="Nombre del producto">
+                  <span class="help-block">Nombre del producto</span>
+                </div>
+                <div class="col-xs-3">
+                  <input type="text" class="form-control" ng-model="vm.newDetailQty" placeholder="Cantidad" allow-decimal-numbers>
+                  <span class="help-block">Cantidad</span>
+                </div>
+                <div class="col-xs-3">
+                  <input type="text" class="form-control" ng-model="vm.newDetailAmount" placeholder="Precio unitario" allow-decimal-numbers>
+                  <span class="help-block">Precio unitario</span>
+                </div>
+                <div class="col-xs-2">
+                  <button type="button" class="btn btn-primary" ng-disabled="!vm.newDetailName || !vm.newDetailQty || !vm.newDetailAmount" ng-click="vm.onNewDetailElement()">Agregar</button>
+                </div>
+              </div>
+
+              <table datatable="ng" width="100%" class="table table-hover table-bordered" dt-options="vm.dtOptions" dt-instance="vm.dtInstance" dt-column-defs="vm.dtColumnDefs">
+    				    <thead>
+    				      <tr>
+    								<th> Nombre del producto </th>
+    								<th> Cantidad </th>
+    								<th> Precio unitario </th>
+    								<th> Acciones </th>
+    							</tr>
+    				    </thead>
+    				    <tbody>
+    				      <tr ng-repeat="detail in vm.detailList">
+    				        <td>{{ detail.name }}</td>
+    				        <td>{{ detail.qty }}</td>
+    				        <td>${{ detail.amount }}</td>
+    								<td><a class="btn btn-xs btn-danger" ng-click="vm.onDeleteDetailElement($index)"><i class="fa fa-trash"></i></a></td>
+    				      </tr>
+    				    </tbody>
+    				  </table>
+
+              <div class="box-footer">
+                <button type="button" class="btn btn-danger" ng-click="vm.onCancel()">Cancelar</button>
+                <button type="button" class="btn btn-primary pull-right" ng-disabled="!vm.detailList || 0 === vm.detailList.length" ng-click="vm.onCreate()">Continuar</button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+			</div>
+
+	</div>
+</section>

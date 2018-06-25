@@ -1,0 +1,89 @@
+<section class="container-fluid">
+
+  <div class="invoice invoice-box" ng-show="!vm.exist">
+    <strong> Esta factura no esta disponible </strong>
+  </div>
+
+  <div class="invoice invoice-box" ng-show="vm.exist">
+
+    <table cellpadding="0" cellspacing="0">
+      <tr class="top">
+        <td colspan="3">
+          <table>
+            <tr>
+              <td class="title">
+                <img src="/img/default-logo.png" style="width:100%; max-width:150px;">
+              </td>
+
+              <td>
+                Factura #: {{ vm.invoice.id }}<br>
+                Creada   : {{ vm.invoice.created_at | date : "fullDate"}}<br>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr class="information">
+
+        <td colspan="3">
+          <table>
+            <tr>
+              <td>
+                {{ vm.enterprise.Nombre }}<br>
+                {{ vm.enterprise.RazonSocial }}<br>
+                {{ vm.enterprise.CUIT }}
+              </td>
+
+              <td>
+                {{ vm.client.Nombre }}<br>
+                {{ vm.client.CUIT }}<br>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr class="heading">
+        <td>
+          Detalle
+        </td>
+
+        <td>
+          Cantidad
+        </td>
+        <td>
+          <p class="pull-right">Precio unitario</p>
+        </td>
+      </tr>
+
+      <tr class="item" ng-repeat="detail in vm.details">
+        <td>{{ detail.nombreItem }}</td>
+        <td>{{ detail.cantidad }}</td>
+        <td><p class="pull-right">${{ detail.precio_unitario }}</p></td>
+      </tr>
+
+      <tr class="total">
+        <td colspan="2"></td>
+        <td >
+           Sub Total: ${{ vm.invoice.Subtotal }}
+        </td>
+      </tr>
+      <tr class="total">
+        <td colspan="2"></td>
+        <td >
+           IVA: ${{ vm.invoice.IVA }}
+        </td>
+      </tr>
+      <tr class="total">
+        <td colspan="2"></td>
+        <td >
+           Total + IVA: ${{ vm.invoice.total }}
+        </td>
+      </tr>
+
+    </table>
+
+  </div>
+
+</section>

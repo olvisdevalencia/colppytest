@@ -1,0 +1,101 @@
+<section class="container-fluid">
+	<div class="row">
+      <div class="col-md-offset-1 col-md-10 resumen-list" ng-show="!vm.exist">
+          <strong> Esta factura no esta disponible </strong>
+      </div>
+      <div class="col-md-offset-1 col-md-10 resumen-list" ng-show="vm.exist">
+
+				<div class="col-md-12">
+          <div class="box-body">
+            <h3 class="text-center">DETALLE  DE FACTURA</h3>
+          </div>
+				</div>
+
+        <div class="col-md-6">
+
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">
+                EMPRESA: <strong>{{ vm.enterprise.Nombre }}</strong>
+                &nbsp;
+                CUIT: <strong>{{ vm.enterprise.CUIT }}</strong>
+              </h3>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">
+                CLIENTE: <strong>{{ vm.client.Nombre }}</strong>
+                &nbsp;
+                CUIT: <strong>{{ vm.client.CUIT }}</strong>
+              </h3>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-12">
+
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">Items</h3>
+            </div>
+
+            <div class="box-body">
+
+              <div class="row has-warning">
+                <div class="col-xs-4">
+                  <input type="text" class="form-control" ng-model="vm.newDetailName" placeholder="Nombre del producto">
+                  <span class="help-block">Nombre del producto</span>
+                </div>
+                <div class="col-xs-3">
+                  <input type="text" class="form-control" ng-model="vm.newDetailQty" placeholder="Cantidad" allow-decimal-numbers>
+                  <span class="help-block">Cantidad</span>
+                </div>
+                <div class="col-xs-3">
+                  <input type="text" class="form-control" ng-model="vm.newDetailAmount" placeholder="Precio unitario" allow-decimal-numbers>
+                  <span class="help-block">Precio unitario</span>
+                </div>
+                <div class="col-xs-2">
+                  <button type="button" class="btn btn-primary" ng-disabled="!vm.newDetailName || !vm.newDetailQty || !vm.newDetailAmount" ng-click="vm.onNewDetailElement()">Agregar</button>
+                </div>
+              </div>
+
+              <table datatable="ng" width="100%" class="table table-hover table-bordered" dt-options="vm.dtOptions" dt-instance="vm.dtInstance" dt-column-defs="vm.dtColumnDefs">
+    				    <thead>
+    				      <tr>
+    								<th> Nombre del producto </th>
+    								<th> Cantidad </th>
+    								<th> Precio unitario </th>
+    								<th> Acciones </th>
+    							</tr>
+    				    </thead>
+    				    <tbody>
+    				      <tr ng-repeat="detail in vm.detailList">
+                    <td>{{ detail.nombreItem }}</td>
+                    <td>{{ detail.cantidad }}</td>
+                    <td>${{ detail.precio_unitario }}</td>
+    								<td><a class="btn btn-xs btn-danger" ng-click="vm.onDeleteDetailElement($index)"><i class="fa fa-trash"></i></a></td>
+    				      </tr>
+    				    </tbody>
+    				  </table>
+
+              <div class="box-footer">
+                <button type="button" class="btn btn-danger" ng-click="vm.onCancel()">Cancelar</button>
+                <button type="button" class="btn btn-primary pull-right" ng-disabled="!vm.detailList || 0 === vm.detailList.length" ng-click="vm.onUpdate()">Continuar</button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+			</div>
+
+	</div>
+</section>

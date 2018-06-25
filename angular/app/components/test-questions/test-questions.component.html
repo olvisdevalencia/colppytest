@@ -1,0 +1,86 @@
+<section class="container-fluid" style="top:20px">
+  <div class="row">
+      <div class="col-md-6">
+        <div class="box box-solid">
+          <div class="box-header with-border">
+            <i class="fa fa-text-width"></i>
+            <h3 class="box-title">Pregunta 1</h3>
+          </div>
+          <div class="box-body">
+            <blockquote>
+              <p>
+                Notamos que un WS se pone muy lento en determinadas épocas del mes. Esto lo evidenciamos por
+                que les da timeout a los clientes o bien porque demora más de lo habitual en responder un request.
+              </p>
+              <p>¿Qué solución propondrías a este problema?</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="box box-solid">
+          <div class="box-header with-border">
+            <i class="fa fa-text-width"></i>
+            <h3 class="box-title">Pregunta 2</h3>
+          </div>
+          <div class="box-body">
+            <blockquote>
+              <p>
+                Tenemos una tabla de 20MM de registros, que crece diariamente. Sobre la misma se realizan además,
+                múltiples consultas para extracción de reportes. En muchos de estos casos, el resultado se demora o bien generan timeout.
+              </p>
+              <p>¿Que opciones planteas para resolver este problema?</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <i class="fa fa-text-width"></i>
+              <h3 class="box-title">Respuesta 1</h3>
+            </div>
+            <div class="box-body">
+              <blockquote>
+                <p class="text-green">
+                  <ul>
+                    <li>Revisar los logs al consultar el web service, para detectar posibles problemas.</li>
+                    <li>Optimizar la consulta al web service, de manera solo traer los datos necesarios y no todo al mismo tiempo.</li>
+                    <li>Limitando la cantidad de peticiones.</li>
+                    <li>Verificando que se halla cerrado la peticion una vez realiazada la misma.</li>
+                    <li>Una vez hecho esto y detectado el problema se puede reaccionar a un posible bug fix del mismo.</li>
+                  </ul>
+                </p>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <i class="fa fa-text-width"></i>
+              <h3 class="box-title">Respuesta 2</h3>
+            </div>
+            <div class="box-body">
+              <blockquote>
+                <p class="text-green">
+                  <ul>
+                    <li>Revisar los metodos de la clase generadora de la consulta.</li>
+                    <li>Optimizar la consulta a la base de datos, muchas veces se traen datos o campos que no son utilizados.</li>
+                    <li>Esto tambien tiene mucho que ver con la memoria del servidor, performance del query.</li>
+                    <li>Revisar que este bien diseñada y normalizada la base de datos es uno de los factores claves,ya que dan mas que todo este tipo de timeout
+                        sino estan bien optimizadas.</li>
+                    <li>Una de las cosas que me ha resultado util es separar la logica el front y el backend.</li>
+                    <li>De tal manera que el front solo quede realizando las peticiones y del lado del backend lo mismo.</li>
+                    <li>Es decir balanceando la carga entre ambas, solo se usara el front para presentacion y peticion de los datos.</li>
+                    <li>Dejando la carga de la base de datos aparte, manejando esta informacion con alguna utilizando JSON, compresión, y una API RESTFul.</li>
+                  </ul>
+                </p>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
