@@ -16,7 +16,7 @@ Abrir ```.env``` e ingrese la configuración necesaria para la DB.
 $ php artisan migrate --seed
 
 ```
-Creaar y popular registros en la base de datos
+Este comando , creara y popular registros necesarios en la base de datos, para ejecutar la aplicación.
 
 ## Work Flow
 
@@ -28,6 +28,19 @@ $ php artisan serve --host=0
 Abrir una nueva terminal
 ```
 $ gulp && gulp watch
+
+```
+
+**Test unitarios**
+Se encuentran en la carpeta ```/tests```, para ejecutarlos.
+```
+$ vendor/phpunit/phpunit/phpunit
+
+```
+ó si ya tienen instalado phpunit
+```
+$ phpunit
+
 ```
 
 > Default Username/Password: admin@colppy.com / colppy
